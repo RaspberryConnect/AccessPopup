@@ -38,13 +38,16 @@ If you have a version older than version 1 installed then uninstall AccessPopup 
 
 ### Installation:
 
-If you have the GIT command installed on your system then use 
+If you have the GIT command installed on your system then use
+
 ``` git clone https://github.com/RaspberryConnect/AccessPopup.git ```
 
 Otherwise while still on GitHub use the “Code” button and choose Download.zip
 This will download AccessPopup-main.zip
 UnZip the files using the Desktop option or the command 
 ``` unzip AccessPopup-main.zip ```
+Rename the AccessPopup-main folder to AccessPopup
+``` mv AccessPopup-main AccessPopup ```
 
 Next cd to the AccessPopup folder.
 ``` cd AccessPopup ```
