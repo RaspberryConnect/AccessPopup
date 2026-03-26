@@ -8,7 +8,7 @@ With the Raspberry Pi being so portable it is always useful to have a wifi conne
 
 This Script will monitor the wifi connection and make sure you are connected to a known Wifi network when the signal is good or it will create a WiFi Access Point, so you will always have a wifi connection available to the device.  It will also allow you to flip to an Access Point with a simple command and back to a WiFi network on demand.
 
-Originally developed for the Raspberry Pi it has been expanded to run on most Linux devices that use Network Manager.
+**Originally developed for the Raspberry Pi it has been expanded to run on most Linux devices that use Network Manager.**
 
 The Access Point will allow a direct Wifi connection to the Pi from a Phone, Tablet, Laptop for use with ssh, VNC desktop sharing, a local web server, etc.
 
