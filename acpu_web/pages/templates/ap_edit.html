@@ -1,0 +1,48 @@
+{% extends 'core.html' %}
+{% block core_body%}
+<div class="area">
+<H3>This WiFi Profiles available on this device.</H3>
+<p>The current wifi connection is to <b>{{context.wifi.Connection}}</b> on wifi device <b>{{context.wifi.Device}}</b> </p>
+
+<form method="post" action="/ap_edit_details">   
+<p><b>WiFi Networks Configured on this device</b></p>
+<p>Select a profile to use:</p>
+    {% if context.profiles %}
+        {% for prof in context.profiles %}
+            <input type="radio" id="{{ prof }}" name="edit_nw" value="{{ prof }}">
+            {{ prof }}<br>
+        {% endfor %}
+    {% else %}
+        <p>There are no Wifi profiles setup on the device. <br>Select "Add New Wifi Network" to add one.</p>
+    {% endif %}
+  
+<p><br>This page will be disconnected when "Connect to Selected" is used while viewing from another device.</p>
+
+ <button type="submit" name="submit" class="submit-btn grn" value="edit">Edit Selected Password</button>
+ <button type="submit" name="submit" class="submit-btn blu" value="connect">Connect to  Selected</button>
+ <button type="submit" name="submit" class="submit-btn red" value="delete">Delete Selected</button>
+ </form>
+ {% if messagen %}
+  <p style="color: red;">{{ messagen }}</p>
+{% endif %}
+</div>
+<div class="area">
+<h3>AccessPopup Profile</h3>
+<p>Edit the SSID and Password for the AccessPopup access point</p>
+
+<form method="post" action="/ap_edit">
+<p><b>If the Access Point AccessPopup is currently active, it will be stopped and deleted. Switching will be re-enabled so this device will connect to known WiFi network in range, otherwise it will create an Access Point with the new details.</b></p>
+<p>This is the name other wifi devices will show when searching for a wifi network to connect to
+<br><input type="text" name="ap_ssid" placeholder="{{ apssid }}"><br>
+Enter a new password for the AccessPopup profile<br>
+This is the password required when another device connects to the SSID shown above. 
+<br><input type="text" name="ap_pwd" placeholder="{{ appwd }}">
+<br>
+<button type="submit" class="submit-btn grn">Update AP Details</button>
+</form></p>
+{% if message %}
+  <p style="color: red;">{{ message }}</p>
+{% endif %}
+
+</div>
+{% endblock core_body%}

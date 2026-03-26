@@ -1,0 +1,89 @@
+{% extends 'core.html' %}
+{% block core_body %}
+<div class="area">
+<h3>Scan for nearby WiFi networks</h3>
+<p>Refresh the list of wifi networks in the area. Then select one to add as a new wifi profile.
+<br>Profiles that already exist on your system are not selectable but are shown below if they are in range.</p>
+
+<div>
+    <form method="post" action="/refresh_list" id="scan-form">
+        <input type="hidden" name="refresh_list" value="1">
+        <button type="submit" id="refresh-btn" class="submit-btn grn">Refresh List</button>
+    </form>
+    <p>The list may take up to 30 seconds to appear.</p>
+</div>
+
+<div id="wifi-results">
+{% if message %}
+  <p>{{ message }}</p>
+{% endif %}
+</div>
+
+<script>
+const resultsDiv = document.getElementById("wifi-results");
+const refreshBtn = document.getElementById("refresh-btn");
+const form = document.getElementById("scan-form");
+
+let pollCount = 0;
+const maxPolls = 12;  // 12 polls × 5s = 60s timeout
+
+// Poll scan status until results are ready
+async function checkScanStatus() {
+    const resp = await fetch("/scan_status");
+    const data = await resp.json();
+
+    //NEW: handle redirect case for (-95)
+    if (data.redirect) {
+        window.location.href = data.redirect;  // go to /manual_add page
+        return;
+    }
+
+    if (data.status === "running") {
+        resultsDiv.innerHTML = "<p>Scanning… please wait.</p>";
+        pollCount++;
+        if (pollCount < maxPolls) {
+            setTimeout(checkScanStatus, 5000);  // try again in 5s
+        } else {
+            resultsDiv.innerHTML = "<p style='color:red;'>Scan timed out. Please try again.</p>";
+            refreshBtn.disabled = false;  // allow retry
+        }
+    } else if (data.status === "done") {
+        let html = "<form method='post' action='/new_nw'>";
+        html += "<p><b>Nearby WiFi Networks</b></p>";
+        data.results.forEach(prof => {
+            if (prof && prof.trim() !== "") {   // skip empty SSIDs
+                html += `<input type="radio" id="${prof}" name="new_nw" value="${prof}"> ${prof}<br>`;
+            }
+        });
+        html += "<br><button type='submit' class='submit-btn grn'>Add Selected</button></form>";
+        
+        html += "<p><b>Your saved Wifi profiles that are in range:</b><br>";
+        html += "<ul>";
+        data.mywifi.forEach(ssid => {
+            html += `<li>${ssid}</li>`;
+        });
+        html += "</ul></p>";
+        
+        resultsDiv.innerHTML = html;
+        refreshBtn.disabled = false; // re-enable after scan finishes
+        pollCount = 0; // reset for next scan
+    }
+}
+
+// Intercept form submission
+form.addEventListener("submit", async function(e) {
+    e.preventDefault(); // stop full page reload
+    refreshBtn.disabled = true;
+    resultsDiv.innerHTML = "<p>Scanning… please wait.</p>";
+
+    // Trigger background scan
+    await fetch("/refresh_list", { method: "POST", body: new FormData(form) });
+
+    // Start polling for results
+    pollCount = 0;
+    checkScanStatus();
+});
+</script>
+
+</div>
+{% endblock core_body %}

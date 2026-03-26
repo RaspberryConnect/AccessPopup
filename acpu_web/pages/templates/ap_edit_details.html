@@ -1,0 +1,20 @@
+{% extends 'core.html' %}
+{% block core_body%}
+<div class="area">
+<H3>Change the Password for an Existing profile</H3>
+<p>Profile Selected: <b>{{selected_prof}}</b> </p>
+
+<p>Enter new password for {{selected_prof}}</p>
+
+<form method="post" action="/ap_edit_pw">
+    <input type="text" name="newpass" value="">
+    <input type="hidden" name="profile" value="{{ selected_prof }}"><br>
+     <button type="submit" class="submit-btn grn">Connect to Selected Network</button>
+</form>
+<p></p>
+{% if message %}
+  <p style="color: red;">{{ message }}</p>
+{% endif %}
+</div>
+
+{% endblock core_body%}

@@ -1,0 +1,36 @@
+{% extends 'core.html' %}
+{% block core_body%}
+<div class="index">
+    
+<div class="area">
+<H2>Current Network Device Details</H2>
+<p>Currently connected to <b>{{context.wifi.Connection}}</b> on wifi device <b>{{context.wifi.Device}} {{context.wifi.wifiip}}</b> </p>
+<p>Hostname: <b>{{context.hostname}}</b></p>
+<p>Ethernet 1: Device <b>{{context.lan1.lan_device}}</b> is active <b>{{context.lan1.lan_active}} {{context.lan1.lan_ip}} </b><br>
+Ethernet 2: Device <b>{{context.lan2.lan_device}}</b> is active <b>{{context.lan2.lan_active}} {{context.lan2.lan_ip}}</b></p>
+<p>Select the 'Home Page' menu to refresh network details if required.</p>
+</div>
+
+<div>
+<div class="area">
+<h3>WiFi Profile Switching</H3>
+<p>Select a constant AccessPopup WiFi Access Point or Wifi Network checking<br><br>
+<b>Note: When viewing this page over WiFi, it will be disconnected during WiFi switching.</b><br>
+You will need to reconnect to this device on the new wifi network to continue</p>
+<p>If you are viewing this page via an attached screen to this device or through a LAN connection then the page will not be disconnected during wifi switching. </p>
+<p>
+<form method="post">
+<button type="submit" name="switch" class="submit-btn grn" value="to_ap">Switch to an AP</button>
+<button type="submit" name="switch" class="submit-btn grn" value="to_nw">Restart NW Checks</button>
+</form>
+<p>Note: The Access Point will not shutdown while there is a current connection of this page from another device.<br>
+Use "Edit WiFi Profiles" page to select a network to connect to instantly or disconnect from the Access Point and wait a couple of minutes for the device to appear on a known wifi network that is in range. </p>
+</p>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+{{result}}
+</div>
+</div>    
+{% endblock core_body%}

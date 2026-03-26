@@ -1,0 +1,29 @@
+{% extends 'core.html' %}
+{% block core_body%}
+
+<div class="area">
+<H2>Add New WiFi Network</H2>
+<p>This device is not capable of scanning for a nearby wifi networks while the Access Point is active.</p>
+<p>If you know the Name and Password of the WiFi network you wish to add to the system, then enter the details below.</p>
+<p>A connection will be attempted with those details. If you are viewing this page from a remote device then you will loose connection to this page.
+<br>Connect the remote device to the new network to continue.</p>
+<p>If there are any issues with the connection details then the new profile will be deleted and the Access Point will be activated.</p>
+
+<H3>Enter the SSID and Password for the new connection:</H3>
+{% if message %}
+  <p style="color: red;">{{ message }}</p>
+{% endif %}
+<form method="post" action="/add_network_manual">
+	<p>Connection SSID<br>
+	<input type="text" name="new_nw_ssid" value=""></p>
+	<p>Connection Password<br>
+    <input type="text" name="new_nw_pass" value=""></p>
+     <button type="submit" class="submit-btn grn">Create New Connection</button>
+</form>
+<p><b>Please Note: The connection to this page will be lost</b> while connecting to the new wifi network.</p>
+<p>If there is an issue with the connection , such as an incorrect password.</p>
+<p>This device will either connect to the previous wifi network or create the AccessPopup wifi access point.</p>
+
+
+</div>    
+{% endblock core_body%}

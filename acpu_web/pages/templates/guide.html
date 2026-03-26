@@ -1,0 +1,73 @@
+﻿{% extends 'core.html' %}
+{% block core_body%}
+
+<div class="area">
+<H2>User Guide</H2>
+<p>This guide will refer to the device running AccessPopup and serving the web pages as the <b>ACPU_Device</b> and the device showing the webpage as the <b>Phone</b>.
+<br>These pages can be accessed via the http://ip address/8052 or http://hostname/8052 can be used as well if connected to a WiFi network.<p>
+<p>So if you are connected to the AccessPopup Access Point with the default settings then enter http://192.168.50.5/8052 into a web browser.  If you are using a screen on the ACPU_Device device then http://localhost:8052 can also be used.</p>
+
+<p><b>Unresponsive Pages:</b> Some features will cause the network connection between the ACPU_Device and the Phone to be disconnected<br>
+If you find that a page is unresponsive or has 'Timed Out' it may be the devices have disconnected and you will need to connect to the wifi network the ACPU_Device has changed to.<br><br><b>Select the Home Page to confirm the ACPU_Device has been disconnected</b>
+<br>You will need to connect to the AccessPopup Access Point or the same Wifi network that the ACPU_Device has connected to, to continue. 
+
+<br>Scan for nearby wifi networks on the Phone, if the AccessPopup SSID is shown then the Access Point is active and can be connected to. Otherwise use a nearby wifi network that both devices have access to.</p>
+
+<H2>Home Page</H2>
+<p>The home page shows info about the ACPU_Devices wifi device, Ethernet devices and the hostname.<p>
+The <b>Wifi profile switching</b> section allows you to switch the ACPU_Device device to an Access Point, this will disable the 2 minute checks.<br>
+Using "Restart NW Checks" will enable the 2 minute checks again. AccessPopup will not switch to a nearby wifi network unless there is no connections to the Access Point. As the web page is being viewed over WiFi there will be a active connection.<br>
+<img src="{{ url_for('static', path='img/guide_home_img_buttons.png') }}" alt="Home Page AccessPopup Switching Buttons" />
+<p>To connect to a Wifi network again either use the "Edit WiFi Profile" menu and Connect to a chosen network or disconnect the Phone from the Access Point and wait a couple of minutes for the ACPU_Device to connect to a known nearby WiFi network. </p>
+<p>If you need to select a certain Wifi network when more than one are available, then you can select the correct network using the "Edit Wifi Profiles" page.</p>
+
+<H2>Edit Wifi Profiles</H2>
+<p>On this page the ACPU_Devices known wifi networks can be edit, deleted or connected to.</p>
+<p><b>Edit selected Password:</b> Update the stored password for an existing wifi network. Once the new password is entered there will be an attempt to connect to it. This may cause the connection between the ACPU_Device and Phone to be disconnected.</p>
+<p><b>Connect to Selected:</b> The home page will show what wifi network the ACPU_Device is connected to. If you wish to connect to another known wifi network then select the required SSID and use "Connect to Selected". The connection between the ACPU_Device and Phone will be disconnected. The chosen network needs to be in range otherwise the Access Point will reactivate or the ACPU_Device will connect to another known WiFi network in range.</p>
+<p><b>Delete selected:</b> Delete the stored profile. If the currently connected profile is deleted then an attempt will be made to connect to another nearby network by Network Manager. If there is no suitable connection available you may have no wifi until the next 2 minute timer is complete. AccessPopup will then create an AccessPoint if required.</p>
+
+<h4>AccessPopup Profile:</h4>
+<img src="{{ url_for('static', path='img/change_accesspopup_details.png') }}" alt="Change AccessPopup SSID and Password" />
+<p>Here you can change the AccessPopups SSID so other Wifi devices see the Name of your choice. This is also
+useful when there are mutiple devices with AccessPopup running, so you can identify which device has its Access Point active.</p>
+<p>The Password can also be change here. If the default insecure password is still available then it's a good oppertunity to change it.</p>
+<P>You can change either or both settings.<br><b>Please Note:</b> If the AccessPopup script is in a permamant AccessPoint mode with the "Switch to AP" button or the 'accesspopup -a' command, then it will be returned to a switching 2 minute timer.<br>
+This is because the profile will be deleted and the device will be left with no wifi connection if no Wifi network is in range."</P>
+
+<H2>Add New Wifi Network</H2>
+<p>Select the "Refresh List" button to see a list of nearby wifi networks you can choose to create a new connection for.<br>Please allow the scan to complete before clicking elsewhere.<br>This can take 30 seconds or so for the list to appear.</p>
+<p>If any of the Wifi networks that are configured on the ACPU_Device are in range then they will be shown underneath the selectable list. These can be connected to on the "Edit Wifi Profiles" page.</p>
+<p>When you have selected a new network from the list and clicked "Add Selected", you will be asked to enter the password.<br>When "Connect to Selected Network" is clicked, an attempt will be made to connect to the new network.</p>
+<p>If the Connection is successful the page will timeout as the Viewing device will now need to connect to the same selected network to reconnect to the ACPU_Device, if required.</p>
+<p>If the connection is not successful, such as the incorrect password,  then the new profile will be deleted. The ACPU_Device device will either connect to another known Wifi Network or if none are available the Access Point will be started. So you will need to locate what the ACPU_Device device has done to continue.</p>
+
+<p><b>Please Note</b> some laptop wifi devices are not able to scan for nearby networks if they have an Access Point active. If this is the case then you will be asked to manually enter the new networks SSID and Password instead of selecting the SSID from the list.<br>The Access Point will then be stopped and the ACPU_Device will attempt to connect to the entered WiFi network. Any issues such as an incorrect password will cause the profile to be deleted and the ACPU_Device will connected to a known Wifi Network or generates the Access Point</p>
+
+<H2>Devices warning of No Internet</H2>
+<img src="{{ url_for('static', path='img/no_internet_warning.png') }}" alt="Mobile Phone No Internet Warning Message" />
+<p>When a Phone, Laptop, Tablet first connects to the AccessPopup access point it may warn you that there is no Internet connection and ask if you want to continue with the connection or just for this session.<br>
+The access point won't have internet access unless the ACPU_Device has an Ethernet cable is connected, that is connected to the internet. So choose "Always Connect".</p>
+
+<H2>Guide</H2>
+<p>You are here</p>
+
+<H2>General Connection Issues</H2>
+<p>A Wifi connection can be affected by many factors outside what this script is doing, such as;
+<ul>
+<li>interference</li>
+<li>too many wifi signals on the same channel</li>
+<li>a low battery on the device</li>
+<li>too many devices connected to the device for the available power supply meaning there is little power to run wifi reliably</li>
+</ul>
+<br><b>This script does not make the connection to network devices</b>, it only monitors the active Network Manager profile and de-activates and activates profiles as required. 
+<br>Network Manager creates and manages the connections and permissions between devices. If you suspect that AccessPopup script is causing an issue please uninstall AccessPopup and try to replicate the problem you are having.</p>
+<p>If the issue only occurs while the AccessPopup script is running then please contact me with as much detail about your system and the issue you have and I will be happy to look into this further.<br>
+Issues of poor connection, slow data can be due to a device and not the AccessPopup script especially when the Access Point is not active.</p>
+<p>While the Access Point is active; if there are connection issues that you do not experience with other Access Point setups then I will be happy to investigate further.</p>
+<p>If these web pages become unresponsive but you know the ACPU_Device and Phone are on the same network then there may be an issue. You can restart the webserver by usinging the installerconfig script. Use option 8-1 to disable the Web App and the again to Re-enable the Web App.</p>
+
+<H2>Support</H2>
+<p>AccessPopup has been created by a single developer. If you find this useful and you would like to show your support then I would appreciate any promotion on social media or a donations towards the cost of development and web hosting or even just a comment on RaspberryConnect.com to say how you are using the scripts as it is always interesting to hear how this project is being used. Ultimately I hope you find it useful.</p>
+</div>    
+{% endblock core_body%}

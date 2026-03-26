@@ -1,0 +1,22 @@
+{% extends 'core.html' %}
+{% block core_body%}
+<div class="area">
+<H3>Enter the password for the selected Network:</H3>
+<p>Profile Selected: <b>{{new_nw}}</b> </p>
+
+<p>Enter the password for {{new_nw}}</p>
+
+<form method="post" action="/add_network_pw">
+    <input type="text" name="new_nw_pass" value="">
+    <input type="hidden" name="profile" value="{{ new_nw }}"><br><br>
+     <button type="submit" class="submit-btn grn">Connect to Selected Network</button>
+</form>
+<p><b>Please Note: This page will be disconnected</b> while a connection to the new wifi network is made.</p>
+<p>If there is an issue with the connection , such as an incorrect password.</p>
+<p>This device will either connect to the previouse wifi network or create the AccessPopup wifi access point.</p>
+{% if message %}
+  <p style="color: red;">{{ message }}</p>
+{% endif %}
+</div>
+
+{% endblock core_body%}
