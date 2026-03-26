@@ -51,7 +51,7 @@ Next cd to the AccessPopup folder.
 
 To run the Installer script
 
-``` sudo chmod +x ./installerconfig.sh ```
+``` sudo chmod +x ./installconfig.sh ```
 
 ``` sudo ./installconfig.sh ```
 
