@@ -75,6 +75,8 @@ to go back to normal use, just run the script without the -a argument.
 alternately use option 4 "Live Switch..." on this installer script.
 
 ## Menu Options:
+<img width="502" height="362" alt="Install_Menu" src="https://github.com/user-attachments/assets/a79d1713-cd20-4f54-9662-55c1c330af70" />
+
 ### 1 = Install AccessPopup Script
 Installs the AccessPopup script and starts the 2 minute checks
 
@@ -258,6 +260,8 @@ This is because the Access Point will be shutdown to make the changes and if the
 **Please Note Again:** because the features of the Web Interface are for modifying the network setup. Even though multiple devices can view the pages at any one time. Only one connection should make changes at a time to avoid causing issues.
 
 ### Home Page:
+<img width="452" height="410" alt="ACPU_Web_HomePage_sml" src="https://github.com/user-attachments/assets/e1a2ce78-3531-4fe1-8369-848c131d1e00" />
+
 This page show details about the network devices.
 Wifi network, device and IP address.
 If Ethernet is connected then the IP address will be shown
@@ -270,6 +274,8 @@ The “Restart NW Checks” button. Will restart the 2 minute Timer and connect 
 This will only work on a ACPU_Device with a screen. As the Phone will be connected to the Access Point the switch to a Wifi Network is not available. Use the “Edit WiFi Profiles” page to connect to a selected Wifi Network.
  
 ### Edit Wifi Profiles
+<img width="455" height="232" alt="ACPU_Web_Edit_Wifi_Profile_sml" src="https://github.com/user-attachments/assets/a2f13805-8739-4de0-9314-caac975b7f31" />
+
 This page lists the known wifi networks setup on the ACPU_Device.
 If there are no Networks listed then none are available. Use the page “Add New Wifi Network” to create a new profile.
 
@@ -285,6 +291,8 @@ If the currently connected profile is deleted then an attempt will be made to co
 If there is no suitable connection available you may have no wifi until the next 2 minute timer is complete. AccessPopup will then create an Access Point if required.
 
 #### AccessPopup Profile:
+<img width="454" height="227" alt="ACPU_Web_Edit_ACPU_Profile_sml" src="https://github.com/user-attachments/assets/d84ed484-6980-49b0-b060-f8982318672c" />
+
 Here you can change the AccessPopups SSID so other Wifi devices see the Wifi Name of your choice. This is also useful when there are multiple devices with AccessPopup running, so you can identify which device has its Access Point active.
 The Password can also be change here. If the default insecure password is still available then it's a good opportunity to change it.
 
@@ -292,6 +300,8 @@ You can change either or both settings. **Please Note:** If the ACPU_Device is i
 This is because the profile will be deleted so the ACPU_Device will be left with no wifi connection, if there is no Wifi network is in range."
 
 ## Add New Wifi Network
+<img width="455" height="331" alt="ACPU_Web_add_new_network_sml" src="https://github.com/user-attachments/assets/8119861a-e003-4663-80ba-e764a441405c" />
+
 Select the **Refresh List** button to see a list of nearby wifi networks you can choose to create a new connection for. Please allow the scan to complete before clicking elsewhere.
 This can take 30 seconds or so for the list to appear.
 
@@ -308,6 +318,8 @@ If this is the case then you will be asked to manually enter the new networks SS
 The Access Point will then be stopped and the ACPU_Device will attempt to connect to the entered WiFi network. Any issues such as an incorrect password will cause the profile to be deleted and the ACPU_Device will connected to a known Wifi network or generates the Access Point.
 
 ## Devices warning of No Internet
+<img width="200" height="270" alt="no_internet_warning" src="https://github.com/user-attachments/assets/1dfe29ad-853e-423e-900b-b870202ca5c8" />
+
 When a Phone, Laptop, Tablet first connects to the AccessPopup access point it may warn you that there is no Internet connection and ask if you want to continue with the connection or just for this session.
 The access point won't have internet access unless the ACPU_Device has an Ethernet cable connected, which is also connected to the internet. So choose "Always Connect".
 
