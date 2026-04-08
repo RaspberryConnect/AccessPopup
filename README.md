@@ -236,7 +236,7 @@ Pip and a virtual env will be installed if Python is available but they are not 
 
 
 
-## Web Interface:
+## Web Interface (Optional):
 Install, Enable and Disable the web interface with menu option 8-1.
 
 **Guide Reference:**
