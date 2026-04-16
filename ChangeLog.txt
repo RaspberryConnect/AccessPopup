@@ -2,6 +2,9 @@
 
 
 installconfig.sh
+	ver 1.01 15th April 2026
+		On activation of the web app "Internal Server Error" was returned. The python library Starlette had gone from version 0.52.1 to 1.0. The new version caused a dictionary error. Requirments.txt has been updated with all dependancies and versions.
+	Removed some testing print statements from app.py and acpu_get_std.py to reduce unnecessary log outputs.
 	ver 1.0 22nd March 2026
 		Updated to work with most Debian, Fedora or Arch Linux distros on any Linux Single Board Computer or Linux Laptops. The distro must be using Network Manager and SystemD.
 		Added optional installation of a python Web Interface to control AccessPopup and Network Manager profiles.

@@ -1,5 +1,5 @@
 #!/bin/bash
-ver="1.0: 22nd March 2026"
+ver="1.01: 15th April 2026"
 #Copyright Graeme Richards - RaspberryConnect.com
 #Released under the GPL3 Licence (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
@@ -499,7 +499,7 @@ if [ -f "./$scriptname" ]; then
 		systemctl stop dnsmasq >/dev/null 2>&1
 	fi
 
-	if [ "$hostapd" = "1" ] ;then
+	if [ "$hostapd_avail" -eq 1 ] ;then
 		systemctl is-enabled hostapd >/dev/null 2>&1
 		if [ $? -eq 0 ] ;then
 			echo "Hostapd is installed and enabled."
