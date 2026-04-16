@@ -1,5 +1,5 @@
 #!venv/bin/python3.11
-#AccessPopup Webpage Features; 28th Feb 2026
+#AccessPopup Webpage Features; 16th April 2026
 #Systemd Activation
 
 #Copyright Graeme Richards. RaspberryConnect.com
@@ -100,7 +100,6 @@ class NMprofiles:
 					
 	def update(self):
 		"""This will refresh the profiles information"""
-		print("\n**Update**: acpu_get.Update called at:", time.ctime())
 		self.__wifi_prof_collector()
 		return 0
 		#ethernet is checked along with this wifi update
@@ -176,7 +175,6 @@ def scanwifi(def_wifi):
 			found_ssid = [line.removeprefix('\tSSID: ') for line in iwdata.stdout.splitlines() if 'SSID:' in line and 'x00' not in line]
 			found = [*found_ssid]
 			time.sleep(2)
-	print("ScanWifi Found is:",found)
 	if found:
 		return undup_list(found)
 	else:
@@ -185,32 +183,6 @@ def scanwifi(def_wifi):
 def undup_list(self):
 	"""Remove Duplicates from List"""
 	return list(dict.fromkeys(self))
-
-#future
-def wifi_onoff(switch):
-	if switch in ["on","off"]:
-		wifi_status=subprocess.run(['sudo','nmcli','radio','wifi'], capture_output=True, text=True, timeout=10)
-		if wifi_status.returncode == 0:
-			wifi_status=wifi_status.stdout.splitlines()
-			if wifi_status[0] == "enabled" and switch == "off":
-				subprocess.run(['sudo','nmcli','radio','wifi','off'])
-			if wifi_status[0] == "disabled" and switch == "on":
-				subprocess.run(['sudo','nmcli','radio','wifi','on'])
-	else:
-		print("Wifi On/Off - Invalid switch reference; " + str(switch))
-
-#future
-def wifi_onoff_status():
-	r = 2
-	wifi_status=subprocess.run(['sudo','nmcli','radio','wifi'], capture_output=True, text=True, timeout=10)
-	if wifi_status.returncode == 0:
-		wifi_status=wifi_status.stdout.splitlines()
-		print("wifi_on/off_status: returned",wifi_status) 
-		if wifi_status[0] == "enabled":
-			r = 1
-		elif wifi_status[0] == "disabled":
-			r= 0
-	return r
 	
 def get_hostname():
 	hst = subprocess.run(['sudo','nmcli','general','hostname'],capture_output=True, text=True, timeout=10)
@@ -262,7 +234,6 @@ def edit_accesspopup(self):
 	# Edits config in accesspopup.conf
 	file_p = self[2]
 	new_line = f"{self[0]}'{self[1]}'\n"
-	print("edit_accesspopup: newline", new_line)
 
 	tmp_file_path = None
 	try:
@@ -381,7 +352,7 @@ class Messaging:
 		if self.msg_in != None:
 			code = self.msg_in.get("code")
 			args = self.msg_in.get("args")
-			print("Received Code", code, "Args",args)
+			#print("Received Code", code, "Args",args)
 			if code == "HOST": #Hostname
 				x = get_hostname()
 				self.send_out(code,x)
@@ -403,7 +374,7 @@ class Messaging:
 			return
 		code = self.msg_in.get("code")
 		args = self.msg_in.get("args")
-		print("Received Code", code, "Args",args)
+		#print("Received Code", code, "Args",args)
 		code_actions = {
 			"HOST": lambda: get_hostname(),
 			"APPL": lambda: (NMstat.update(), NMstat.ap_prof_list())[1],
@@ -426,9 +397,9 @@ class Messaging:
 		if action:
 			try:
 				x = action()
-				print("__code_cmd Action is :",x)
+				#print("__code_cmd Action is :",x)
 				self.send_out(code,x)
-				print("For ",x, " the results are ",x)
+				#print("For ",x, " the results are ",x)
 			except Exception as e:
 				print(f"[Error handling {code}]: {e}")
 		else:
