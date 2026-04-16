@@ -1,5 +1,5 @@
 #!venv/bin/python3.11
-#AccessPopup web files 28th Feb 2026
+#AccessPopup web files 16th April 2026
 #Systemd Activation
 
 #Copyright Graeme Richards. RaspberryConnect.com
@@ -60,7 +60,7 @@ def get_nm_update():
     ap = wait_for_msg()
     Comms.send_out("HOST","")
     hostname = wait_for_msg()
-    print("Active_wifi is:", active_wifi)
+    #print("Active_wifi is:", active_wifi)
     if active_wifi:
         try:
             wiip = active_wifi[0][5]
@@ -78,7 +78,7 @@ def get_nm_update():
         "lan":lan,
         "ap_prof":ap
     }
-    print("Lan Returned:",lan)
+    #print("Lan Returned:",lan)
     if not lan:
         status.update(lan1 = {"lan_device":"None","lan_active":"no"})
         status.update(lan2 = {"lan_device":"None","lan_active":"no"})
@@ -150,19 +150,16 @@ async def index(request: Request):
 
 @app.get("/guide",response_class=HTMLResponse)
 async def guide(request: Request):
-    print("Load Guide")
     return templates.TemplateResponse("guide.html",{"request":request})
 
 
 #page
 @app.get("/ap_edit",response_class=HTMLResponse)
 async def get_ap_edit(request: Request, message: str | None = None ):
-    print("##ap_edit GET")
     file_p = script_path + scriptname
     context = get_nm_update()
     Comms.send_out("APGT",file_p)
     x = wait_for_msg()
-    print("##ap_edit unpack ssid and pw:",x)
     if x != None and len(x) == 2:
             apssid,appwd = x
     else:
@@ -180,7 +177,6 @@ async def get_ap_edit(request: Request, message: str | None = None ):
 #Edit AP Profile
 @app.post("/ap_edit", response_class=HTMLResponse)
 async def post_ap_edit(request: Request, ap_ssid: str = Form(""), ap_pwd: str = Form("")):
-    print("##ap_edit POST")
 
     # Get current saved SSID/password
     file_p = script_path + scriptname
@@ -246,7 +242,7 @@ async def ap_edit_details(request: Request, edit_nw: str | None = Form(None), su
     
 @app.post("/ap_edit_pw", response_class=HTMLResponse)
 async def ap_edit_pw(request: Request, newpass: str = Form(...), profile: str = Form(...)):
-    print("Profile selected is " + profile)
+    #print("Profile selected is " + profile)
 
     if not newpass.strip():
         message = "Nothing Entered, No Change"
@@ -388,7 +384,7 @@ async def add_network_pw(request: Request, new_nw: str = Form(...)):
 
 @app.post("/add_network_pw", response_class=HTMLResponse)
 async def add_network_pw(request: Request, new_nw_pass: str = Form(...), profile: str = Form(...)):
-    print("Profile selected is " + profile)
+    #print("Profile selected is " + profile)
     if not new_nw_pass.strip():
         message = "Nothing Entered, No Change"
     else:
@@ -444,14 +440,14 @@ def do_scan():
         myssids_in_scan = list(set(s) & set(w))
     finally:
         scan_running = False
-        print("Do Scan:",scan_result)
+        #print("Do Scan:",scan_result)
 
 def wait_for_msg():
     t = time.time()
     while time.time() - t < 40: #check for messages up to 15 seconds
         msg = Comms.check_msg_in()
         if msg != None:
-            print("Msg Returned:",msg)
+            #print("Msg Returned:",msg)
             return msg.get("args")
     return None
         
@@ -493,14 +489,13 @@ class Messaging:
 def receive_messages(sock):
     try:
         while True:
-            print("Receive Loop")
             data = sock.recv(1024)
-            print("After sock.recv")
+            #print("After sock.recv")
             if not data:
                 print("[Server disconnected]")
                 break
             try:
-                print("Receive Try:")
+                #print("Receive Try:")
                 Comms.receive_in(data.decode())
             except:
                 pass
