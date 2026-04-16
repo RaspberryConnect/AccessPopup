@@ -31,7 +31,7 @@ For older Raspberry Pi OS's there is a similar script called Autohotspot availab
 ## Installation and Use:
 **Latest versions:**
 accesspopup 0.9, 22nd March 2026
-installconfig.sh 1.0, 22nd March 2026
+installconfig.sh 1.01, 15th April 2026
 
 #### Previous_Version of InstallConfig.sh:
 If you have a version older than version 1 installed then uninstall AccessPopup before installing version 1 or newer, as there is a different configuration from version 1.
