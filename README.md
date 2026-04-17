@@ -18,7 +18,7 @@ This is useful for Devices that may be running sensors, cameras or other monitor
 
 
 ## Compatibility:
-The AccessPopup script should also work on any **Debian, Fedora or Arch Linux** device or variants of these distros, (Single Board Computer or Laptop) that use Network Manager and SystemD. Python is also required for the optional web page controls.
+The AccessPopup script should also work on any **Debian, Fedora or Arch Linux** device or variants of these distros, (Single Board Computer, Laptop or CyberDeck) that use Network Manager and SystemD. Python is also required for the optional web page controls.
 
 A Raspberry Pi 64 bit computer (Pi5, 500, Pi4, 400, Pi3/+, Zero2) PIOS 12 Bookworm or newer is required as older versions don't use Network Manager.
 
