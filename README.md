@@ -341,7 +341,8 @@ While the Access Point is active; if there are connection issues that you do not
 If the web app become unresponsive but you know the ACPU_Device and Phone are on the same network, then there may be an issue. You can restart the web server by using the installconfig script. Use option 8-1 “Web Interface - enable & disable switch” to disable the Web App and then again to re-enable the Web App.
 
 ## Support
-AccessPopup has been developed by a single developer. If you find this useful and you would like to show your support then I would appreciate any promotion on social media or a donations towards the cost of development and web hosting or even just a comment on RaspberryConnect.com to say how you are using the AccessPopup as it is always interesting to hear how this project is being used. Ultimately I hope you find it useful.  A Donation can be made with the Sponsor button at the top of this repository, or on the article on the home page at RaspberryConnect.com.
+AccessPopup has been developed by a single developer. If you find this useful and you would like to show your support then I would appreciate any promotion on social media or a donations towards the cost of development and web hosting or even just a comment on RaspberryConnect.com to say how you are using the AccessPopup as it is always interesting to hear how this project is being used. Ultimately I hope you find it useful.  
+A Donation can be made with the Sponsor button at the top of this repository, or on the article on the home page at RaspberryConnect.com.
   
 
 
